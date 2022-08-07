@@ -32,8 +32,6 @@ const List = () => {
           </Template>
         </>
       )}
-
-      {showContent.loading && 'Carregando'}
     </>
   );
 };

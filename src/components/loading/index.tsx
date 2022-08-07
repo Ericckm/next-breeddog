@@ -14,7 +14,9 @@ const Loading = () => {
         <Wrapper>
           <Title>Carregando</Title>
           <WrapperSpinner>
-            <RedirectSpan>Aguarde, enquanto estamos carrengando o conteúdo</RedirectSpan>
+            <RedirectSpan>
+              Aguarde, enquanto estamos carrengando o conteúdo
+            </RedirectSpan>
             <br />
             <Spinner />
           </WrapperSpinner>
