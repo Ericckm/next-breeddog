@@ -9,7 +9,9 @@ const MenuList = () => {
       </Head>
       <Container>
         <h1>Seja bem vindo!</h1>
-        <Paragraph>Para começar, selecione uma raça que gostaria de ver fotos!</Paragraph>
+        <Paragraph>
+          Selecione uma das raças no menu para visualizar as imagens
+        </Paragraph>
       </Container>
     </>
   );
