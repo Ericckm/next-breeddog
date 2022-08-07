@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { handleSubmitApiCall } from '../../services/handleSubmitApiCall';
 import { validateEmail } from '../../utils/validateEmail';
+import ApiError from '../apiError';
 import {
   Button,
   Container,
@@ -15,7 +16,7 @@ import {
 const Register = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [apiError, setApiError] = useState('');
+  const [apiError, setApiError] = useState(false);
   const router = useRouter();
 
   const handleEmail = (e: any) => {
@@ -39,32 +40,35 @@ const Register = () => {
         const token = sessionStorage.getItem('token');
         if (token) router.push('list');
       } else {
-        setApiError('Estamos com problema de comunicação com a api');
+        setApiError(true);
       }
     }
   }
 
   return (
     <>
-      <FullContainer>
-        <Container>
-          <Wrapper>
-            <Title>Se registre para ver alguns doguinhos</Title>
-            <p>Só precisamos do seu email para prosseguir</p>
-            <FormWrapper>
-              <Input
-                placeholder='E-mail'
-                type='email'
-                onChange={handleEmail}
-                onBlur={handleEmail}
-              />
-              {error && <span>{error}</span>}
-              <Button onClick={handleSubmit}>Login</Button>
-            </FormWrapper>
-          </Wrapper>
-        </Container>
-      </FullContainer>
-      {apiError && <span>{apiError}</span>}
+      {!apiError ? (
+        <FullContainer>
+          <Container>
+            <Wrapper>
+              <Title>Se registre para ver alguns doguinhos</Title>
+              <p>Só precisamos do seu email para prosseguir</p>
+              <FormWrapper>
+                <Input
+                  placeholder='E-mail'
+                  type='email'
+                  onChange={handleEmail}
+                  onBlur={handleEmail}
+                />
+                {error && <span>{error}</span>}
+                <Button onClick={handleSubmit}>Login</Button>
+              </FormWrapper>
+            </Wrapper>
+          </Container>
+        </FullContainer>
+      ) : (
+        <ApiError />
+      )}
     </>
   );
 };
